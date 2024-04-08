@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "postgrator --config postgrator-config.js",
     "rollback": "postgrator --config postgrator-config.js --undo",
-    "start": "nodemon server.js"
+    "start": "nodemon"
   },
   "keywords": [],
   "author": "",
