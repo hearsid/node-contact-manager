@@ -1,0 +1,10 @@
+-- 001_create_todo_table.sql
+
+CREATE TABLE todos (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT unique_id UNIQUE (id)
+);
