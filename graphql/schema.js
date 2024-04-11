@@ -1,11 +1,5 @@
 import { buildSchema } from 'graphql';
 export default buildSchema(`
-    type Post {
-        id: ID!
-        title: String!
-        content: String!
-        imageUrl: String!
-    }
 
     type User {
         id: ID!
@@ -13,7 +7,13 @@ export default buildSchema(`
         email: String!
         password: String
         status: String!
-        posts: [Post!]!
+    }
+
+    type Contact {
+        id: ID!
+        email: String!
+        name: String!
+        password: String!
     }
 
     type AuthData {
@@ -21,21 +21,16 @@ export default buildSchema(`
         userId: String!
     }
 
-    type PostsData {
-        posts: [Post!]!
-        total: Int!
+    type ContactsInputData {
+        name: String!
+        tel: String!
+        email: String!
     }
 
     input UserInputData {
         email: String!
         name: String!
         password: String!
-    }
-
-    input PostInputData {
-        title: String!
-        content: String!
-        imageUrl: String!
     }
 
     type RootQuery {
@@ -47,9 +42,9 @@ export default buildSchema(`
 
     type RootMutation {
         createUser(userInput: UserInputData): User!
-        createPost(postInput: PostInputData): Post!
-        updatePost(postId: ID!, postInput: PostInputData): Post!
-        deletePost(postId: ID!): Boolean
+        createContact(contactInput: ContactsInputData): Contact!
+        updatePost(contactId: ID!, contactInput: ContactsInputData): Contact!
+        deletePost(contactId: ID!): Boolean
         updateStatus(status: String!): User!
     }
 

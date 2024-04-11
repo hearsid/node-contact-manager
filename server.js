@@ -3,10 +3,30 @@ import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
 import cors from 'cors';
 import supabase from './supabase.js';
-import todoRouter from './routes/todo.js';
+import todoRouter from './routes/contacts.js';
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
+
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: 'User Service',
+      description: 'User Service Information',
+      contact: {
+        name: 'Amazing Developer',
+      },
+      servers: ['http://localhost:'+port],
+    },
+  },
+  // ['.routes/*.js']
+  apis: ['./routes/*.js'],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Middleware for JSON parsing
 app.use(express.json());
